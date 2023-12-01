@@ -5,27 +5,17 @@ public class IncreasingTripletSequence {
         System.out.println(increasingTriplet(arr));
     }
     public static boolean increasingTriplet(int[] nums) {
-        int j = 1;
-        while (j < nums.length - 1){
-            int i = j - 1;
-            if(nums[i] < nums[j]){
-                int k = j + 1;
-                while (j < nums.length){
-                    if(nums[j] < nums[k]){
-                        return true;
-                    }
-                    k++;
-                    if(k == nums.length - 1){
-                        j++;
-                    }
-                }
+        int small = Integer.MAX_VALUE;
+        int mid = Integer.MAX_VALUE;
+        for(int big : nums) {
+            if(big <= small) {
+                small = big;
             }
-            i--;
-            if(i < 0){
-                j++;
+            else if(big <= mid) {
+                mid = big;
             }
+            else return true;
         }
         return false;
-
     }
 }
